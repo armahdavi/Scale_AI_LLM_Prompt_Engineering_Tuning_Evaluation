@@ -18,3 +18,13 @@ This repository showcases my work samples for Scale AI, which utilize prompt eng
 
 
 ## This is a heading ## <font size="1">This is regular text</font>
+## This is a heading ## <font size="1">This is regular text</font>
+
+
+<style>
+.small-text {
+  font-size: 12px;
+}
+</style>
+
+## Another heading <span class="small-text">This is regular text</span>
