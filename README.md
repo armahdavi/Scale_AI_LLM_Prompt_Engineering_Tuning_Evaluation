@@ -1,4 +1,4 @@
-# Scale_AI_LLM_Prompt_Engineering_Tuning
+# Scale AI: Prompt Engineering, Response Evaluation, and Code Assessment to Tune and Optimize Large Language Model (LLM)
 
 With the rapid advancement of Large Language Models (LLMs), professionals in fields such as Data Science, Machine Learning, Full-stack Engineering, and Software Development increasingly rely on these tools for code generation, understanding, debugging, and optimization. While LLMs offer remarkable efficiency in generating code and text, effective prompt engineering and response evaluation are essential to ensure accurate and reliable outputs.
 
