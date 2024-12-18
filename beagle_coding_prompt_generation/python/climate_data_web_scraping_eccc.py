@@ -1,5 +1,6 @@
 '''
-This is a test code to scrape climate data from the Environment and Climate Change Canada (ECCC)
+This is a test code to scrape climate data from the Environment and Climate Change Canada (ECCC) 
+webiste that are publically available.
 The scraped data will be useful later for climate risk assessment, climatic condition prediction 
 with Machine Learning (ML) and thermal and hygrothermal simulation inputtings.
 '''
