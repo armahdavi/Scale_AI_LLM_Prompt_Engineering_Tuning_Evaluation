@@ -53,3 +53,30 @@ wmo = '71508' # The World's Meterological Organziation ID of the station
 os.chdir(r'C:\Outlier\Beagle Coding Prompt Collection\Session5_241001')
 df_all.to_excel(f'eccc_{beg}_{end}_{wmo}.xlsx', index = False)
 print(df_all.head(10))
+
+
+''' Test output
+                 Date  Temp  Dew Point  Rel Hum  Precip. Wind Dir 10s  \
+0 2017-01-01 00:00:00   0.5       -4.3       70      0.0     LegendMM   
+1 2017-01-01 01:00:00   0.8       -4.2       70      0.0     LegendMM   
+2 2017-01-01 02:00:00   0.6       -4.9       67      0.0     LegendMM   
+3 2017-01-01 03:00:00   1.0       -4.6       66      0.0     LegendMM   
+4 2017-01-01 04:00:00   1.0       -4.6       66      0.0     LegendMM   
+5 2017-01-01 05:00:00   1.1       -4.7       65      0.0     LegendMM   
+6 2017-01-01 06:00:00   0.6       -4.8       67      0.0     LegendMM   
+7 2017-01-01 07:00:00   0.1       -5.4       67      0.0     LegendMM   
+8 2017-01-01 08:00:00  -0.3       -5.6       67      0.0     LegendMM   
+9 2017-01-01 09:00:00  -0.3       -6.0       65      0.0     LegendMM   
+
+   Wind Spd  Visibility   Press  Hmdx  Wind Chill  Definition  
+0  LegendMM         NaN   99.34   NaN         NaN  LegendNANA  
+1  LegendMM         NaN   99.52   NaN         NaN  LegendNANA  
+2  LegendMM         NaN   99.64   NaN         NaN  LegendNANA  
+3  LegendMM         NaN   99.82   NaN         NaN  LegendNANA  
+4  LegendMM         NaN   99.98   NaN         NaN  LegendNANA  
+5  LegendMM         NaN  100.06   NaN         NaN  LegendNANA  
+6  LegendMM         NaN  100.16   NaN         NaN  LegendNANA  
+7  LegendMM         NaN  100.29   NaN         NaN  LegendNANA  
+8  LegendMM         NaN  100.44   NaN         NaN  LegendNANA  
+9  LegendMM         NaN  100.56   NaN         NaN  LegendNANA 
+'''
