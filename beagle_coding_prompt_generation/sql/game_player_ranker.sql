@@ -5,7 +5,7 @@ CREATE TABLE players (
     rank_ NVARCHAR(50)              -- Rank of the player
 );
 
-
+-- Example data for query test; The query will be run over real streaming data though
 INSERT INTO players (player_id, player_name, xp, rank_)
 VALUES
     (1, 'PlayerOne', 120, 'Silver II'),
