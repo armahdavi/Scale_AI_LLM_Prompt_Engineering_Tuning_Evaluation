@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Dec 18 18:29:19 2024
+Program to sumarize how much each emplyee work for a specific client in a corporate organziation
 
 @author: alima
 """
@@ -8,7 +8,7 @@ Created on Wed Dec 18 18:29:19 2024
 import pandas as pd
 
 # Read input file and collect its sheet names and data
-input_file = r'C:\Outlier\Beagle Coding Prompt Generation\corporate.xlsx'
+input_file = 'corporate.xlsx'
 sheets_dict = pd.read_excel(input_file, sheet_name = None)
 
 # Make a master file and populate it with the sheet data
