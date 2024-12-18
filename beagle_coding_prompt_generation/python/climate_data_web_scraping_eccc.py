@@ -1,3 +1,9 @@
+'''
+This is a test code to scrape climate data from the Environment and Climate Change Canada (ECCC)
+The scraped data will be useful later for climate risk assessment, climatic condition prediction 
+with Machine Learning (ML) and thermal and hygrothermal simulation inputtings.
+'''
+
 # Import essnential modules
 from datetime import date, timedelta, datetime
 import pandas as pd
