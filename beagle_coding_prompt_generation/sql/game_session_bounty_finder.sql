@@ -1,9 +1,30 @@
----- TABLE CREATIONS FOR TEST OVER RANDOM DATA ----
+-- Declare variables for the current date and floor date (30 days ago)
+DECLARE @current_date DATE = CAST(GETDATE() AS DATE);
+DECLARE @floor_date DATE = DATEADD(DAY, -30, @current_date);
+
+-- Query to retrieve player information for the specified bounty ID
+SELECT DISTINCT
+    p.player_username,
+    p.player_email_address
+FROM Players p
+JOIN Sessions s
+    ON s.player_id = p.player_id
+JOIN PlayersBounties pb
+    ON pb.player_id = p.player_id
+WHERE 
+    s.session_date BETWEEN @floor_date AND @current_date
+    AND s.session_length >= 1
+    AND pb.bounty_id = 'BK1YW2Z8-RSIJ-Z1NK-GRC4-O3QPCHN6F5AU';
+
+
+
+
+---- HERE ARE SOME RANDOM DATA CREATION TO APPLY THE ABOVE QUERY ----
 
 -- Create Players table
 DROP TABLE IF EXISTS Players; -- Drop tables if they already exist
 CREATE TABLE Players (
-    player_id INT PRIMARY KEY,
+    player_id INT,
     player_username VARCHAR(100),
     account_creation_date DATE,
     player_email_address VARCHAR(100),
@@ -17,22 +38,12 @@ VALUES
 (2, 'playerTwo', '2021-02-10', 'player2@example.com', '1995-08-22', 1),
 (3, 'playerThree', '2020-11-05', 'player3@example.com', '1988-03-30', 0),
 (4, 'playerFour', '2021-03-15', 'player4@example.com', '2000-12-12', 1),
-(5, 'playerFive', '2021-05-20', 'player5@example.com', '1992-10-18', 1),
-(6, 'playerSix', '2020-12-01', 'player6@example.com', '1997-06-07', 1),
-(7, 'playerSeven', '2021-07-11', 'player7@example.com', '1994-04-03', 1),
-(8, 'playerEight', '2021-08-25', 'player8@example.com', '1999-09-14', 0),
-(9, 'playerNine', '2021-10-02', 'player9@example.com', '1985-02-28', 1),
-(10, 'playerTen', '2021-11-21', 'player10@example.com', '1990-11-25', 1),
-(11, 'playerEleven', '2021-12-15', 'player11@example.com', '1987-07-12', 0),
-(12, 'playerTwelve', '2022-01-05', 'player12@example.com', '1993-11-02', 1),
-(13, 'playerThirteen', '2022-02-14', 'player13@example.com', '2001-01-15', 1),
-(14, 'playerFourteen', '2021-03-22', 'player14@example.com', '1989-03-11', 1),
-(15, 'playerFifteen', '2021-05-30', 'player15@example.com', '1998-06-25', 1);
+(5, 'playerFive', '2021-05-20', 'player5@example.com', '1992-10-18', 1);
 
 -- Create Sessions table
 DROP TABLE IF EXISTS Sessions;
 CREATE TABLE Sessions (
-    session_id INT PRIMARY KEY,
+    session_id INT,
     player_id INT,
     session_date DATE,
     session_start_time TIME,
@@ -46,19 +57,19 @@ INSERT INTO Sessions (session_id, player_id, session_date, session_start_time, s
 VALUES 
 (1, 1, '2022-09-15', '12:00:00', '13:00:00', 60),
 (2, 1, '2022-09-16', '14:00:00', '15:30:00', 90),
-(3, 2, '2022-09-15', '09:00:00', '10:00:00', 60),
-(4, 3, '2022-09-14', '11:00:00', '11:45:00', 45),
-(5, 4, '2022-09-13', '13:00:00', '14:00:00', 60),
-(6, 5, '2022-09-12', '14:30:00', '16:00:00', 90),
-(7, 6, '2022-09-12', '15:00:00', '16:30:00', 90),
-(8, 7, '2022-09-11', '12:00:00', '12:45:00', 45),
-(9, 8, '2022-09-10', '08:30:00', '09:30:00', 60),
-(10, 9, '2022-09-09', '17:00:00', '18:00:00', 60),
-(11, 10, '2022-09-08', '19:00:00', '20:00:00', 60),
-(12, 11, '2022-09-07', '14:00:00', '15:30:00', 90),
-(13, 12, '2022-09-06', '15:00:00', '16:00:00', 60),
-(14, 13, '2022-09-05', '10:00:00', '11:00:00', 60),
-(15, 14, '2022-09-04', '16:30:00', '18:00:00', 90);
+(1, 2, '2022-09-15', '09:00:00', '10:00:00', 60),
+(2, 2, '2022-09-14', '11:00:00', '11:45:00', 45),
+(3, 2, '2022-09-13', '13:00:00', '14:00:00', 60),
+(4, 2, '2022-09-12', '14:30:00', '16:00:00', 90),
+(1, 3, '2022-09-12', '15:00:00', '16:30:00', 90),
+(2, 3, '2022-09-11', '12:00:00', '12:45:00', 45),
+(1, 4, '2022-09-10', '08:30:00', '09:30:00', 60),
+(2, 4, '2022-09-09', '17:00:00', '18:00:00', 60),
+(3, 4, '2022-09-08', '19:00:00', '20:00:00', 60),
+(4, 4, '2022-09-07', '14:00:00', '15:30:00', 90),
+(5, 4, '2022-09-06', '15:00:00', '16:00:00', 60),
+(1, 5, '2022-09-05', '10:00:00', '11:00:00', 60),
+(2, 5, '2022-09-04', '16:30:00', '18:00:00', 90);
 
 
 DROP TABLE IF EXISTS Bounties;
@@ -100,33 +111,15 @@ VALUES
 (1, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
 (1, 'LP6LP8AT-OJE5-007L-JH0M-CC2AAKXJZ67E'),
 (2, 'KOTDX9HT-W4LD-D5PK-OXZE-G3VX3G4266E3'),
-(3, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
+(2, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
+(2, '7GA4C1E5-D9Z5-56A0-8556-6BB5B0711E5J'),
+(2, '71H0CMZM-06RE-1UGP-7EN5-GHIC03IQXCEF'),
+(3, 'H80944LS-G24C-NZ2J-V16Q-1JX61DC9AEF1'),
+(4, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
+(4, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
+(4, 'TUXS23FX-C4DH-DJ92-4L7J-BIOSICXMTSOM'),
 (4, '7GA4C1E5-D9Z5-56A0-8556-6BB5B0711E5J'),
-(5, '71H0CMZM-06RE-1UGP-7EN5-GHIC03IQXCEF'),
-(6, 'H80944LS-G24C-NZ2J-V16Q-1JX61DC9AEF1'),
-(7, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
-(8, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
-(9, 'TUXS23FX-C4DH-DJ92-4L7J-BIOSICXMTSOM'),
-(10, '7GA4C1E5-D9Z5-56A0-8556-6BB5B0711E5J'),
-(11, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
-(12, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
-(13, 'BK1YW2Z8-RSIJ-Z1NK-GRC4-O3QPCHN6F5AU'),
-(14, 'BK1YW2Z8-RSIJ-Z1NK-GRC4-O3QPCHN6F5AU');
-
--- Declare variables for the current date and floor date (30 days ago)
-DECLARE @current_date DATE = CAST(GETDATE() AS DATE);
-DECLARE @floor_date DATE = DATEADD(DAY, -30, @current_date);
-
--- Query to retrieve player information for the specified bounty ID
-SELECT DISTINCT
-    p.player_username,
-    p.player_email_address
-FROM Players p
-JOIN Sessions s
-    ON s.player_id = p.player_id
-JOIN PlayersBounties pb
-    ON pb.player_id = p.player_id
-WHERE 
-    s.session_date BETWEEN @floor_date AND @current_date
-    AND s.session_length >= 1
-    AND pb.bounty_id = 'BK1YW2Z8-RSIJ-Z1NK-GRC4-O3QPCHN6F5AU';
+(5, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
+(5, '8LM7C1D6-D4G8-77B6-6682-9FF5B0711K7P'),
+(5, 'BK1YW2Z8-RSIJ-Z1NK-GRC4-O3QPCHN6F5AU'),
+(5, 'BK1YW2Z8-RSIJ-Z1NK-GRC4-O3QPCHN6F5AU');
