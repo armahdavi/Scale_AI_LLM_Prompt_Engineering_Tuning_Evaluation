@@ -1,20 +1,14 @@
 # Import essnential modules
-from datetime import timedelta, datetime
+from datetime import date, timedelta, datetime
 import pandas as pd
 import numpy as np
 import os
 
-basic_url = 'https://climate.weather.gc.ca/climate_data/hourly_data_e.html?hlyRange=2002-06-04%7C2024-07-10&dlyRange=2002-06-04%7C2024-07-10&mlyRange=2003-07-01%7C2006-12-01&StationID=31688&Prov=ON&urlExtension=_e.html&searchType=stnName&optLimit=yearRange&StartYear=1980&EndYear=2024&selRowPerPage=25&Line=19&searchMethod=contains&Month='
+basic_url = r'https://climate.weather.gc.ca/climate_data/hourly_data_e.html?hlyRange=2002-06-04%7C2024-07-10&dlyRange=2002-06-04%7C2024-07-10&mlyRange=2003-07-01%7C2006-12-01&StationID=31688&Prov=ON&urlExtension=_e.html&searchType=stnName&optLimit=yearRange&StartYear=1980&EndYear=2024&selRowPerPage=25&Line=19&searchMethod=contains&Month='
 
 # Define start and end dates
-start_date = '2017-01-01'
-start_date = datetime.strptime(start_date, '%Y-%m-%d')
-start_date = start_date.timestamp()
-
-end_date = '2017-01-05'
-end_date = datetime.strptime(end_date, '%Y-%m-%d')
-end_date = end_date.timestamp()
-
+start_date = date(2017,1,1)
+end_date = date(2017,1,5)
 
 # Create a date list between the two start and end dates
 date_range = []
@@ -41,7 +35,7 @@ for year, month, day in date_range:
     table.rename(columns = {'TIME LST': 'Date'}, inplace = True)
     table['Date'] = pd.Series([datetime(*cell[:4]) for cell in table['Date']])
    
-    df_all = df_all.append(table)
+    df_all = pd.concat([df_all, table], axis = 0)
                
 
 
@@ -49,6 +43,6 @@ beg = str(start_date)[2:4] + str(start_date)[5:7] + str(start_date)[8:10]
 end = str(end_date)[2:4] + str(end_date)[5:7] + str(end_date)[8:10]
 wmo = '71508' # The World's Meterological Organziation ID of the station 
 
-os.chdir('C:\Outlier\Beagle Coding Prompt Collection\Session5_241001')
-df_all.to_excel(fr'eccc_{beg}_{end}_{wmo}.xlsx', index = False)
+os.chdir(r'C:\Outlier\Beagle Coding Prompt Collection\Session5_241001')
+df_all.to_excel(f'eccc_{beg}_{end}_{wmo}.xlsx', index = False)
 print(df_all.head(10))
