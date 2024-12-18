@@ -11,7 +11,7 @@
 -- Create tables from the scratch in the code with five days of data (5 observations in the first table, and 20 observations in the second table).
 
 
----- CHATBOT CODE ----
+---- CHATBOT CODE FOR ACCURACTY EVALUATION ----
 -- Create the first table
 DROP TABLE IF EXISTS climate_table1;
 CREATE TABLE climate_table1 (
