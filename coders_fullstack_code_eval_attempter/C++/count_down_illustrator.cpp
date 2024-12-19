@@ -1,3 +1,6 @@
+// Program to display count downs from a given number representing the number of seconds
+// Code was transtalted from Python to C++
+
 #include <iostream>
 #include <iomanip>   // For std::setw and std::setfill
 #include <chrono>    // For std::chrono::seconds
