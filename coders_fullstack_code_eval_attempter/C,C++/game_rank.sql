@@ -1,3 +1,6 @@
+-------------------------------------
+-- RANDOM DATA CREATION PER PROMPT --
+-------------------------------------
 DROP TABLE IF EXISTS GameStats
 CREATE TABLE GameStats (
     Username NVARCHAR(50),
@@ -24,6 +27,8 @@ INSERT INTO GameStats (Username, GameID, Rank, MoneySpent) VALUES
 ('DarkKnight', 1014, 'Diamond', 170.20),
 ('ArchAngel', 1015, 'Challenger', 80.00);
 
+
+-- Query
 WITH PlayerDetails AS (
     SELECT
         Username,
