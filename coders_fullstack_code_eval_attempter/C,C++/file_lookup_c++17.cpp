@@ -3,7 +3,6 @@
 //////////////////////////////////////////////////////
 
 // RESPONSE 1 CODE GENERATION
-
 #include <iostream>
 #include <string>
 #include <filesystem>
