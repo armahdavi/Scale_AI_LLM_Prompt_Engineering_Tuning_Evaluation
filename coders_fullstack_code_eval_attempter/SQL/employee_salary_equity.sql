@@ -1,3 +1,38 @@
+SELECT
+    ep.first_name,
+    ep.last_name,
+    m.first_name AS manager_first_name,
+    m.last_name AS manager_last_name,
+    d.department_name,
+    MAX(s.paid_amount) AS highest_salary_2022
+FROM
+    employee_profile ep
+JOIN
+    salary s ON ep.id = s.employee_id
+LEFT JOIN
+    department_manager dm ON ep.id = dm.employee_id AND s.date BETWEEN dm.from_date AND dm.to_date
+LEFT JOIN
+    department d ON dm.department_no = d.department_no
+LEFT JOIN
+    employee_profile m ON ep.manager_id = m.id
+WHERE
+    s.date BETWEEN '2022-01-01' AND '2022-12-31'
+GROUP BY
+    ep.first_name,
+    ep.last_name,
+    m.first_name,
+    m.last_name,
+    d.department_name
+ORDER BY
+    ep.first_name,
+    ep.last_name;
+
+
+
+---------------------------------------------
+-- RANDOM DATA ENTRY FOR TESTING IN PROMPT --
+---------------------------------------------
+
 -- Drop tables if they exist
 IF OBJECT_ID('employee_profile', 'U') IS NOT NULL DROP TABLE employee_profile;
 CREATE TABLE employee_profile (
@@ -59,33 +94,3 @@ INSERT INTO salary (employee_id, paid_amount, date) VALUES
 (1, 81000, '2022-11-01'),
 (2, 61000, '2022-12-01'),
 (3, 76000, '2022-08-01');
-
--- Query to retrieve required information
-SELECT
-    ep.first_name,
-    ep.last_name,
-    m.first_name AS manager_first_name,
-    m.last_name AS manager_last_name,
-    d.department_name,
-    MAX(s.paid_amount) AS highest_salary_2022
-FROM
-    employee_profile ep
-JOIN
-    salary s ON ep.id = s.employee_id
-LEFT JOIN
-    department_manager dm ON ep.id = dm.employee_id AND s.date BETWEEN dm.from_date AND dm.to_date
-LEFT JOIN
-    department d ON dm.department_no = d.department_no
-LEFT JOIN
-    employee_profile m ON ep.manager_id = m.id
-WHERE
-    s.date BETWEEN '2022-01-01' AND '2022-12-31'
-GROUP BY
-    ep.first_name,
-    ep.last_name,
-    m.first_name,
-    m.last_name,
-    d.department_name
-ORDER BY
-    ep.first_name,
-    ep.last_name;
