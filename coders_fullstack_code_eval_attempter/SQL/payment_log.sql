@@ -1,4 +1,6 @@
+-------------------------------------
 ----- PROMPT CODE INCLUDING DATA ----
+-------------------------------------
 
 -- Drop tables if they already exist
 IF OBJECT_ID('payment', 'U') IS NOT NULL DROP TABLE payment;
@@ -38,8 +40,10 @@ INSERT INTO payment (payment_id, customer_id, staff_id, rental_id, amount, payme
 (20, 5, 2, 8326, 2.99, '2005-07-29 03:58:49', '2006-02-15 22:12:30');
 
 
-
+---------------------------------
 ---- CHATBOT 1 RESPONSE CODE ----
+---------------------------------
+
 SELECT
     c.customer_id,
     m.month_num,
@@ -61,8 +65,23 @@ ORDER BY
 
 
 
-
+---------------------------------
 ---- CHATBOT 2 RESPONSE CODE ----
+---------------------------------
+
+-- Get total payments for each customer by month
+SELECT 
+  customer_id,
+  EXTRACT(MONTH FROM payment_date) AS month,
+  SUM(amount) AS total_amount
+FROM 
+  payment
+GROUP BY 
+  customer_id, EXTRACT(MONTH FROM payment_date)
+ORDER BY 
+  customer_id, month;
+
+
 -- Get total payments for each customer by month, including months with no payments
 WITH months AS (
   SELECT 
