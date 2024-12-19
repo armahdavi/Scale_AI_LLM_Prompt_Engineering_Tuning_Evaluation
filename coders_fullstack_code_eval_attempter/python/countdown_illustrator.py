@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Dec 18 19:15:50 2024
+Program to display countdowns for a given input representing the number of seconds
 
 @author: alima
 """
