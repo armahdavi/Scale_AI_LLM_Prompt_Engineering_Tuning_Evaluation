@@ -5,9 +5,9 @@ Simple Gradient Descent (GD) calculation based on numpy only
 @author: alima
 """
 
-################
-## RESPONSE 1 ##
-################
+#############################
+## CHATBOT 1 RESPONSE CODE ##
+#############################
 
 import numpy as np
 
@@ -72,9 +72,9 @@ plt.show()
 
 
 
-################
-## RESPONSE 2 ##
-################
+#############################
+## CHATBOT 2 RESPONSE CODE ##
+#############################
 
 import numpy as np
 
