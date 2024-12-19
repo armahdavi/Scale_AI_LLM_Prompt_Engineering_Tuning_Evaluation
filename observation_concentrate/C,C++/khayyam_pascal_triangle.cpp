@@ -46,10 +46,10 @@ int main() {
 
 /* CHATBOT 2 RESPONSE CODE */
 
-//#include <iostream>
-//#include <vector>
-//#include <iomanip>
-//#include <string>
+#include <iostream>
+#include <vector>
+#include <iomanip>
+#include <string>
 
 std::vector<int> getRow(int rowIndex) {
     std::vector<int> res = {1};
