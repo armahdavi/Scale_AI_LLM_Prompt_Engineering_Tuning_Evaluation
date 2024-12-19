@@ -2,7 +2,8 @@
 Prompt is asking a list of beer rating and its descriptive statistics
 */
 
-// CHATBOT 1 CODE
+
+/* CHATBOT 1 CODE */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -71,7 +72,8 @@ int main() {
 }
 
 
-// CHATBOT 2 CODE
+
+/* CHATBOT 1 CODE */
 #include <stdio.h>
 #include <stdlib.h>
 
