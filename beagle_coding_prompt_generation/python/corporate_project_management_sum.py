@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Program to sumarize how much each emplyee work for a specific client in a corporate organziation
+Program to summarize how much each emplyee work for a specific client in a corporate organziation
 
 @author: alima
 """
